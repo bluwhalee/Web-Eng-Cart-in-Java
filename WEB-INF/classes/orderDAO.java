@@ -31,6 +31,22 @@ public class orderDAO {
             rs = ps.executeUpdate();
 
 
+            query1 = "Select * from med where name=?";
+            ps = con.prepareStatement(query1);
+            ps.setString(1, medicine);
+            ResultSet rs1 = ps.executeQuery();
+            int q = 1;
+            if (rs1.next()) {
+                q = rs1.getInt("quantity");
+                q = q - quantity;
+            }
+            query1 = "UPDATE med SET quantity = ?  WHERE name = ? ";
+            ps = con.prepareStatement(query1);
+            ps.setInt(1, q);
+            ps.setString(2, medicine);
+            ps.executeUpdate();
+
+
         } catch (Exception e) {
             System.out.println(e);
         }

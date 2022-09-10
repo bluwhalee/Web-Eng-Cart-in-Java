@@ -22,6 +22,16 @@
 		<url-pattern>/checkout</url-pattern>
 
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>addmed</servlet-name>
+		<servlet-class>addmed</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addmed</servlet-name>
+		<url-pattern>/addmed</url-pattern>
+
+	</servlet-mapping>
 	
 
 

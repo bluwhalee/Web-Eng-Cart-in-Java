@@ -20,7 +20,7 @@
             String query = "select * from orders" ;
             ResultSet rs = s.executeQuery(query); 
 %>
-<%= session %>
+<h2>Orders<h2>
     <table style="min-width:1240px">
         <tr>
             <th>Order Id</th>
@@ -29,10 +29,10 @@
             <th>Username</th>
         </tr>
 <%
-    int total=0;
+    
     while (rs.next()) {
                 String medicine = rs.getString("medicine");
-                Int q = rs.getInt("quantity");
+                int q = rs.getInt("quantity");
                 String username = rs.getString("username");
                 int orderid  = rs.getInt("orderid");
 
@@ -57,32 +57,27 @@
     
      query = "select * from med" ;
      rs = s.executeQuery(query);
-    rs.next();
-    int cpu1 = (rs.getInt("cpu"));
-    int gpu1 = (rs.getInt("gpu"));
-    rs.previous();
+    while(rs.next()){
+    String med = rs.getString("name");
+    int quantity = rs.getInt("quantity");
+    
 %>
     <tr>
-        <th><%=cpu1%></th>
-        <th><%=gpu1%></th>
-        <th><%=hdd1%></th>
-        <th><%=ram1%></th>
-        <th><%=body1%></th>
-        <th><%=display1%></th>
+        <th><%=med%></th>
+        <th><%=quantity%></th>
+    </tr>
+<%
+    }
+%>
     </table>
-            <h1>Change Order Status<h1>
-            <form action=changestatus action=post><input type=text name=orderid placeholder="Order id"><input type=text
-                    name=status placeholder="New status"><input type=submit value="Change Status"></form><br>
-             <h1>Complete Order<h1>
-            <form action=completeorder action=post><input type=text name=orderid placeholder="Order id">
-                <input type=submit value="Change Status"></form><br>
-            <h1>Search user<h1>
-            <form action="searchuser.jsp" action=post><input type=text name=userid placeholder="Enter User id"><input
-                    type=submit value="Search"></form><br>
-            <h1>Delete Order<h1>
-                    <form action=deleteorder action=post><input type=text name=orderid placeholder="Enter order
-                            id"><input type=submit value="Delete"></form>
-            
+            <h1>Add Medicine<h1>
+            <form action="addmed" action="post">
+                <input type=text name=medname placeholder="Medicine Name">
+                <input type=text name=quantity placeholder="quantity">
+                <input type=submit value="Add">
+            </form><br>
+             
+             
 </body>
 <%
 
